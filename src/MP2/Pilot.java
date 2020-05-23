@@ -6,17 +6,17 @@
 package MP2;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 public class Pilot extends ObjectPlusPlus {
 
+    private static int counter = 1;
     private int id;
     private String name;
     private String surname;
     private LocalDate dateOfBirth;
 
-    public Pilot(int id, String name, String surname, LocalDate dateOfBirth) {
-        this.id = id;
+    public Pilot(String name, String surname, LocalDate dateOfBirth) {
+        this.id = counter++;
         this.name = name;
         this.surname = surname;
         this.dateOfBirth = dateOfBirth;

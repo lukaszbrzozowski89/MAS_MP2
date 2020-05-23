@@ -13,7 +13,31 @@ public class Main {
         testBinaryAssociation();
         testAssociationWithAttribute();
         testComposition();
+        testAssociationWithQualifier();
+    }
 
+    private static void testAssociationWithQualifier() throws Exception {
+        System.out.println("Association With Qualifier Test");
+        Plane plane = new Plane("Boeing", "747",
+                LocalDate.of(2020, 1, 1));
+        Plane plane2 = new Plane("Airbus", "A320",
+                LocalDate.of(2019, 1, 1));
+        Pilot pilot = new Pilot( "Grzegorz", "Burak",
+                LocalDate.of(1986, 12, 12));
+        AirplaneLicence airplaneLicence = new AirplaneLicence(plane,
+                LocalDate.of(2019, 10, 11),
+                LocalDate.of(2022, 12, 12));
+        AirplaneLicence airplaneLicence2 = new AirplaneLicence(plane2,
+                LocalDate.of(2018, 3, 18),
+                LocalDate.of(2025, 6, 6));
+
+        pilot.addLink(AirplaneLicence.class.getSimpleName(), Pilot.class.getSimpleName(), airplaneLicence, airplaneLicence.getPlane());
+        pilot.addLink(AirplaneLicence.class.getSimpleName(), Pilot.class.getSimpleName(), airplaneLicence2, airplaneLicence2.getPlane());
+
+        System.out.println(pilot.getLinkedObject(AirplaneLicence.class.getSimpleName(), airplaneLicence.getPlane()));
+        System.out.println(pilot.getLinkedObject(AirplaneLicence.class.getSimpleName(), airplaneLicence2.getPlane()));
+
+        System.out.println("----------------");
     }
 
     private static void testComposition() throws Exception {
@@ -28,23 +52,25 @@ public class Main {
         Passenger passenger2 = new Passenger("Anna", "Nowak", flight);
 
 
-        passenger.addPart(Luggage.class.getSimpleName(), Passenger.class.getSimpleName(), luggage);
-        passenger.addPart(Luggage.class.getSimpleName(), Passenger.class.getSimpleName(), luggage1);
+        passenger.addPart("czesc", "calosc", luggage);
+        passenger.addPart("czesc", "calosc", luggage1);
 
-//        passenger2.addPart(Luggage.class.getSimpleName(), Passenger.class.getSimpleName(), luggage); // part is already taken
-        passenger.showLinks(Luggage.class.getSimpleName(), System.out);
-//        passenger2.showLinks(Luggage.class.getSimpleName(), System.out); //exception - no links
+//        passenger2.addPart("czesc", "calosc", luggage); // part is already taken
+        passenger.showLinks("czesc", System.out);
+//        passenger2.showLinks("czesc", System.out); //exception - no links
 
         System.out.println("----------------");
     }
 
     private static void testAssociationWithAttribute() throws Exception {
         System.out.println("Association with Attribute Test");
-        Pilot pilot1 = new Pilot(1, "Jan", "Kowalski", LocalDate.of(1986, 12, 12));
+        Pilot pilot1 = new Pilot( "Roman", "Kiszka", LocalDate.of(1986, 12, 12));
         Plane plane1 = new Plane("Boeing", "747", LocalDate.of(2020, 1, 1));
         Plane plane2 = new Plane("Airbus", "A320", LocalDate.of(2015, 12, 24));
-        PilotPlane da = new PilotPlane(LocalDate.of(2020, 1, 14), LocalDate.of(2020, 2, 2), plane1, pilot1);
-        PilotPlane da1 = new PilotPlane(LocalDate.of(2018, 11, 1), LocalDate.of(2018, 12, 1), plane2, pilot1);
+        PilotPlane da = new PilotPlane(LocalDate.of(2020, 1, 14),
+                LocalDate.of(2020, 2, 2), plane1, pilot1);
+        PilotPlane da1 = new PilotPlane(LocalDate.of(2018, 11, 1),
+                LocalDate.of(2018, 12, 1), plane2, pilot1);
 
 
         pilot1.addLink(PilotPlane.class.getSimpleName(), Pilot.class.getSimpleName(), da);

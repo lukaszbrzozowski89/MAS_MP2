@@ -16,6 +16,7 @@ public class Steward extends ObjectPlusPlus {
     private int numberOfRole;
 
     public Steward(String name, String surname, int experience) {
+        super();
         this.name = name;
         this.surname = surname;
         this.experience = experience;
