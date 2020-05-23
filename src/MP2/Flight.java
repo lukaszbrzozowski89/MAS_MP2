@@ -6,13 +6,11 @@
 package MP2;
 
 
-
 public class Flight extends ObjectPlusPlus {
 
     private String numberOfFlight;
     private String airportFrom;
     private String airportTo;
-
 
     public Flight(String numberOfFlight, String airportFrom, String airportTo) {
         super();

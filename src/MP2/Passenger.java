@@ -5,7 +5,7 @@
 
 package MP2;
 
-public class Passenger extends ObjectPlusPlus{
+public class Passenger extends ObjectPlusPlus {
 
     private String name;
     private String surname;

@@ -9,8 +9,8 @@ import java.time.LocalDate;
 
 public class PilotPlane extends ObjectPlusPlus {
 
-    private int id;
     private static int counter = 1;
+    private int id;
     private LocalDate flewFrom;
     private LocalDate flewTo;
     private Plane plane;
@@ -24,20 +24,20 @@ public class PilotPlane extends ObjectPlusPlus {
         this.id = counter++;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public static int getCounter() {
         return counter;
     }
 
     public static void setCounter(int counter) {
         PilotPlane.counter = counter;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public LocalDate getFlewFrom() {

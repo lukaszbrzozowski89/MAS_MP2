@@ -7,9 +7,8 @@ package MP2;
 
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 
-public class Plane extends ObjectPlusPlus{
+public class Plane extends ObjectPlusPlus {
 
     private String producer;
     private String model;

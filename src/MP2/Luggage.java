@@ -5,7 +5,7 @@
 
 package MP2;
 
-public class Luggage extends ObjectPlusPlus{
+public class Luggage extends ObjectPlusPlus {
 
     private int id;
     private double weight;

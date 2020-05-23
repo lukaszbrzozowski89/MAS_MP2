@@ -1,8 +1,4 @@
 package MP2;
-/*
- * Copyright (c) 2020
- * Łukasz Brzozowski (s17174) @ PJATK
- */
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

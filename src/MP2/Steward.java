@@ -7,8 +7,8 @@ package MP2;
 
 public class Steward extends ObjectPlusPlus {
 
-    private Integer id;
     private static int counter = 1;
+    private Integer id;
     private String name;
     private String surname;
     private int experience;

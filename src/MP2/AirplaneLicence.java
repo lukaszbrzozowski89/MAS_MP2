@@ -9,8 +9,8 @@ import java.time.LocalDate;
 
 public class AirplaneLicence extends ObjectPlusPlus {
 
-    private int id;
     private static int counter = 1;
+    private int id;
     private Plane plane;
     private LocalDate validFrom;
     private LocalDate validTo;
