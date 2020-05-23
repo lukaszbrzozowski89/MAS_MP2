@@ -3,43 +3,23 @@
  * Łukasz Brzozowski (s17174) @ PJATK
  */
 
-package asocjacja_zwykla;
+package MP2;
 
-
-import asocjacja_z_atrybutem.ObjectPlusPlus;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class Plane extends ObjectPlusPlus {
+public class Plane extends ObjectPlusPlus{
+
     private String producer;
     private String model;
     private LocalDate yearOfProduction;
-
-    private ArrayList<Flight> flight = new ArrayList<>();
 
     public Plane(String producer, String model, LocalDate yearOfProduction) {
         super();
         this.producer = producer;
         this.model = model;
         this.yearOfProduction = yearOfProduction;
-    }
-
-    public void addFlight(Flight newFlight) {
-        if (!flight.contains(newFlight)) {
-            flight.add(newFlight);
-
-            newFlight.addPlane(this);
-        }
-    }
-
-
-    public ArrayList<Flight> getFlight() {
-        return flight;
-    }
-
-    public void setFlight(ArrayList<Flight> flight) {
-        this.flight = flight;
     }
 
     public String getProducer() {
@@ -65,21 +45,14 @@ public class Plane extends ObjectPlusPlus {
     public void setYearOfProduction(LocalDate yearOfProduction) {
         this.yearOfProduction = yearOfProduction;
     }
+
+
     @Override
     public String toString() {
-        String result = "";
-        int counter = 0;
-
-        result += "Model: " + getModel();
-        result += "\nObsługuje rejsy: ";
-
-        for (Flight o : flight) {
-            result += "\n" + ++counter + ". " + o.getNumberOfFlight();
-        }
-
-        result += "\n----------------------";
-
-        return result;
+        return "Plane{" +
+                "producer='" + producer + '\'' +
+                ", model='" + model + '\'' +
+                ", yearOfProduction=" + yearOfProduction +
+                '}';
     }
-
 }

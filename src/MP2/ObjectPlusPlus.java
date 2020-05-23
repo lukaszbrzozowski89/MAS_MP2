@@ -1,4 +1,4 @@
-package kompozycja;
+package MP2;
 
 import java.io.PrintStream;
 import java.io.Serializable;

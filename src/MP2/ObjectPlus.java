@@ -1,4 +1,4 @@
-package asocjacja_zwykla;
+package MP2;
 /*
  * Copyright (c) 2020
  * Łukasz Brzozowski (s17174) @ PJATK

@@ -3,7 +3,7 @@
  * Łukasz Brzozowski (s17174) @ PJATK
  */
 
-package asocjacja_z_atrybutem;
+package MP2;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,8 +14,6 @@ public class Pilot extends ObjectPlusPlus {
     private String name;
     private String surname;
     private LocalDate dateOfBirth;
-
-    private ArrayList<PilotPlane> pilotPlane = new ArrayList<>();
 
     public Pilot(int id, String name, String surname, LocalDate dateOfBirth) {
         this.id = id;
@@ -56,28 +54,13 @@ public class Pilot extends ObjectPlusPlus {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public ArrayList<PilotPlane> getPilotPlane() {
-        return pilotPlane;
+    @Override
+    public String toString() {
+        return "Pilot{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                '}';
     }
-
-    public void setPilotPlane(ArrayList<PilotPlane> pilotPlane) {
-        this.pilotPlane = pilotPlane;
-    }
-
-    /*
-    Asocjacja z atrybutem
-     */
-    public void deletePilotPlane(PilotPlane pilotPlane) {
-        getPilotPlane().remove(pilotPlane);
-    }
-
-    public void removePilot() {                          // METODA USUWAJACA POWIĄZANIE Pilota
-
-        for (PilotPlane pilotPlane : (ArrayList<PilotPlane>) this.pilotPlane.clone()){      // nie można usuwać elentów, po których się właśnie iteruje == kopia listy
-
-            this.deletePilotPlane(pilotPlane);
-        }
-        pilotPlane.clear();
-    }
-
 }

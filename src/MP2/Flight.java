@@ -3,31 +3,22 @@
  * Łukasz Brzozowski (s17174) @ PJATK
  */
 
-package asocjacja_kwalifikowana;
+package MP2;
 
-import java.util.ArrayList;
+
 
 public class Flight extends ObjectPlusPlus {
-    private String duty;
+
     private String numberOfFlight;
     private String airportFrom;
     private String airportTo;
 
-    ArrayList<Steward> stewards = new ArrayList<>();
 
     public Flight(String numberOfFlight, String airportFrom, String airportTo) {
         super();
         this.numberOfFlight = numberOfFlight;
         this.airportFrom = airportFrom;
         this.airportTo = airportTo;
-    }
-
-    public String getDuty() {
-        return duty;
-    }
-
-    public void setDuty(String duty) {
-        this.duty = duty;
     }
 
     public String getNumberOfFlight() {
@@ -56,16 +47,10 @@ public class Flight extends ObjectPlusPlus {
 
     @Override
     public String toString() {
-        String result = "";
-        int licznik = 0;
-
-        result += "Rejs numer: " + getNumberOfFlight();
-
-        result += "\nObsługiwany przez: ";
-
-
-        result += "\n----------------------";
-
-        return result;
+        return "Flight{" +
+                "numberOfFlight='" + numberOfFlight + '\'' +
+                ", airportFrom='" + airportFrom + '\'' +
+                ", airportTo='" + airportTo + '\'' +
+                '}';
     }
 }

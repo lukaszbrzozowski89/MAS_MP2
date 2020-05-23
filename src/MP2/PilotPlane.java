@@ -3,7 +3,7 @@
  * Łukasz Brzozowski (s17174) @ PJATK
  */
 
-package asocjacja_z_atrybutem;
+package MP2;
 
 import java.time.LocalDate;
 
@@ -21,8 +21,6 @@ public class PilotPlane extends ObjectPlusPlus {
         this.flewTo = flewTo;
         this.plane = plane;
         this.pilotName = pilotName;
-        plane.addLink(Plane.class.getSimpleName(), Pilot.class.getSimpleName(), this);
-        pilotName.addLink(Pilot.class.getSimpleName(), Plane.class.getSimpleName(), this);
         this.id = counter++;
     }
 
@@ -76,16 +74,12 @@ public class PilotPlane extends ObjectPlusPlus {
 
     @Override
     public String toString() {
-        String result = "";
-        result += "Pilot: " + pilotName.getName() + " " + pilotName.getSurname() + "\n";
-
-        result += "Samolot: " + plane.getModel() + "\n";
-
-        result += "Obsługiwany od: " + this.getFlewFrom() + " do: " + this.getFlewTo() + "\n";
-
-        result += "\n----------------------\n";
-
-        return result;
+        return "PilotPlane{" +
+                "id=" + id +
+                ", flewFrom=" + flewFrom +
+                ", flewTo=" + flewTo +
+                ", plane=" + plane +
+                ", pilotName=" + pilotName +
+                '}';
     }
-
 }
