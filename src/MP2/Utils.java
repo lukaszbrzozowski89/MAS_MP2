@@ -14,5 +14,4 @@ public class Utils {
     public static String passengerClass = Passenger.class.getSimpleName();
     public static String passengerBoardPassInternalClass = Passenger.BoardingPass.class.getSimpleName();
     public static String airplaneLicenceClass = AirplaneLicence.class.getSimpleName();
-    public static String boardingPassClass = Passenger.BoardingPass.class.getSimpleName();
 }
