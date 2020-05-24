@@ -11,9 +11,9 @@ import static MP2.Utils.*;
 public class Main {
     public static void main(String[] args) throws Exception {
 
-//        testBinaryAssociation();
-//        testAssociationWithAttribute();
-//        testComposition();
+        testBinaryAssociation();
+        testAssociationWithAttribute();
+        testComposition();
         testAssociationWithQualifier();
     }
 
