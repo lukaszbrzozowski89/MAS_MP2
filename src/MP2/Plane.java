@@ -25,26 +25,13 @@ public class Plane extends ObjectPlusPlus {
         return producer;
     }
 
-    public void setProducer(String producer) {
-        this.producer = producer;
-    }
-
     public String getModel() {
         return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
     }
 
     public LocalDate getYearOfProduction() {
         return yearOfProduction;
     }
-
-    public void setYearOfProduction(LocalDate yearOfProduction) {
-        this.yearOfProduction = yearOfProduction;
-    }
-
 
     @Override
     public String toString() {

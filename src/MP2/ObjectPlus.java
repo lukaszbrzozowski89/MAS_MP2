@@ -6,6 +6,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.List;
 
 public class ObjectPlus implements Serializable {
 
@@ -32,6 +33,11 @@ public class ObjectPlus implements Serializable {
 
     public static void getExtent(ObjectInputStream ois) throws IOException, ClassNotFoundException {
         extent = (Hashtable<Class<? extends ObjectPlus>, ArrayList<ObjectPlus>>) ois.readObject();
+    }
+
+    public static <T> void deleteExtension(T name) {
+        List<T> list = (List<T>) extent.get(name.getClass());
+        list.remove(name);
     }
 
     public static int extentSize(Class<? extends ObjectPlus> className) {

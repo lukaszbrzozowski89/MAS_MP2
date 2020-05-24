@@ -9,11 +9,10 @@ import java.time.LocalDate;
 public class Main {
     public static void main(String[] args) throws Exception {
 
-
-        testBinaryAssociation();
-        testAssociationWithAttribute();
+//        testBinaryAssociation();
+//        testAssociationWithAttribute();
         testComposition();
-        testAssociationWithQualifier();
+//        testAssociationWithQualifier();
     }
 
     private static void testBinaryAssociation() throws Exception {
@@ -21,8 +20,8 @@ public class Main {
         System.out.println("Binary Association Test");
         Plane plane1 = new Plane("Boeing", "747", LocalDate.of(2020, 1, 1));
 
-        Flight flight1 = new Flight("LO333", "WAW", "CDG");
-        Flight flight2 = new Flight("LO334", "CDG", "WAW");
+        Flight flight1 = new Flight("LO333", "WAW", "CDG", LocalDate.now());
+        Flight flight2 = new Flight("LO334", "CDG", "WAW", LocalDate.now());
 
         plane1.addLink(Flight.class.getSimpleName(), Plane.class.getSimpleName(), flight1);
         plane1.addLink(Flight.class.getSimpleName(), Plane.class.getSimpleName(), flight2);
@@ -64,7 +63,7 @@ public class Main {
                 LocalDate.of(2020, 1, 1));
         Plane plane2 = new Plane("Airbus", "A320",
                 LocalDate.of(2019, 1, 1));
-        Pilot pilot = new Pilot("Grzegorz", "Burak",
+        Pilot pilot = new Pilot("Grzegorz", "Koszyk",
                 LocalDate.of(1986, 12, 12));
         AirplaneLicence airplaneLicence = new AirplaneLicence(plane,
                 LocalDate.of(2019, 10, 11),
@@ -73,35 +72,49 @@ public class Main {
                 LocalDate.of(2018, 3, 18),
                 LocalDate.of(2025, 6, 6));
 
-        pilot.addLink(AirplaneLicence.class.getSimpleName(), Pilot.class.getSimpleName(), airplaneLicence, airplaneLicence.getPlane());
-        pilot.addLink(AirplaneLicence.class.getSimpleName(), Pilot.class.getSimpleName(), airplaneLicence2, airplaneLicence2.getPlane());
+        pilot.addLink(AirplaneLicence.class.getSimpleName(), Pilot.class.getSimpleName(), airplaneLicence, airplaneLicence.getId());
+        pilot.addLink(AirplaneLicence.class.getSimpleName(), Pilot.class.getSimpleName(), airplaneLicence2, airplaneLicence2.getId());
 
-        System.out.println(pilot.getLinkedObject(AirplaneLicence.class.getSimpleName(), airplaneLicence.getPlane()));
-        System.out.println(pilot.getLinkedObject(AirplaneLicence.class.getSimpleName(), airplaneLicence2.getPlane()));
+        System.out.println(pilot.getLinkedObject(AirplaneLicence.class.getSimpleName(), airplaneLicence.getId()));
+        System.out.println(pilot.getLinkedObject(AirplaneLicence.class.getSimpleName(), airplaneLicence2.getId()));
 
         System.out.println("----------------");
     }
 
     private static void testComposition() throws Exception {
-
         System.out.println("Composition Test");
 
-        Flight flight = new Flight("LO123", "WAW", "OSL");
-        Luggage luggage = new Luggage(1, 12.56);
-        Luggage luggage1 = new Luggage(2, 12.87);
+        Flight flight = new Flight("LO003", "WAW", "ORD", LocalDate.now());
 
-        Passenger passenger = new Passenger("Jan", "Kowalski", flight);
-        Passenger passenger2 = new Passenger("Anna", "Nowak", flight);
+        Passenger passenger = new Passenger("Krzysztof", "Jerzyna", flight);
+        Passenger passenger2 = new Passenger("Jarosław", "Psikuta", flight);
 
+        Passenger.BoardingPass boardingPass = passenger
+                .createBoardingPass(generateNumberOfBoardingPass(flight, passenger));
 
-        passenger.addPart(Luggage.class.getSimpleName(), Passenger.class.getSimpleName(), luggage);
-        passenger.addPart(Luggage.class.getSimpleName(), Passenger.class.getSimpleName(), luggage1);
+        Passenger.BoardingPass boardingPass2 = passenger2
+                .createBoardingPass(generateNumberOfBoardingPass(flight, passenger2));
 
-//        passenger2.addPartLuggage.class.getSimpleName(), Passenger.class.getSimpleName(), luggage); // part is already taken
-        passenger.showLinks(Luggage.class.getSimpleName(), System.out);
-//        passenger2.showLinks(Luggage.class.getSimpleName(), System.out); //exception - no links
+        passenger.showLinks(Passenger.BoardingPass.class.getSimpleName(), System.out);
+        boardingPass.showLinks(Passenger.class.getSimpleName(), System.out);
 
+        System.out.println();
+        passenger2.showLinks(Passenger.BoardingPass.class.getSimpleName(), System.out);
+        boardingPass2.showLinks(Passenger.class.getSimpleName(), System.out);
+        System.out.println();
+
+//        passenger.removePart(Passenger.BoardingPass.class.getSimpleName(), Passenger.class.getSimpleName(), boardingPass);
+//        passenger2.removePart(Passenger.BoardingPass.class.getSimpleName(), Passenger.class.getSimpleName(), boardingPass2);
+        System.out.println(ObjectPlusPlus.allParts);
         System.out.println("----------------");
+
     }
 
+    private static String generateNumberOfBoardingPass(Flight flight, Passenger passenger) {
+        return flight.getNumberOfFlight() + "_" + flight.getStartOfFlight().getYear() + "_"
+                + flight.getStartOfFlight().getMonth().getValue() + "_" + flight.getStartOfFlight().getDayOfMonth()
+                + "_"
+                + passenger.getName().substring(0, 1)
+                + passenger.getSurname().substring(0, 1);
+    }
 }

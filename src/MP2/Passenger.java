@@ -11,7 +11,6 @@ public class Passenger extends ObjectPlusPlus {
     private String surname;
     private Flight flight;
 
-
     public Passenger(String name, String surname, Flight flight) {
         super();
         this.name = name;
@@ -19,29 +18,22 @@ public class Passenger extends ObjectPlusPlus {
         this.flight = flight;
     }
 
+    public BoardingPass createBoardingPass(String number) throws Exception {
+        BoardingPass newBoardingPass = new BoardingPass(this, number);
+        this.addPart(BoardingPass.class.getSimpleName(), Passenger.class.getSimpleName(), newBoardingPass);
+        return newBoardingPass;
+    }
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getSurname() {
         return surname;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
     public Flight getFlight() {
         return flight;
-    }
-
-    public void setFlight(Flight flight) {
-        this.flight = flight;
     }
 
     @Override
@@ -51,5 +43,34 @@ public class Passenger extends ObjectPlusPlus {
                 ", surname='" + surname + '\'' +
                 ", flight=" + flight +
                 '}';
+    }
+
+    static class BoardingPass extends ObjectPlusPlus {
+
+        public static int counter = 0;
+        private int id;
+        private String number;
+        private Passenger passenger;
+
+        private BoardingPass(Passenger passenger, String number) {
+            super();
+            this.id = ++counter;
+            this.number = number;
+            this.passenger = passenger;
+        }
+
+        public Passenger getPassenger() {
+            return passenger;
+        }
+
+        @Override
+        public String toString() {
+            return "BoardingPass{" +
+                    "id=" + id +
+                    ", number=" + number +
+                    '}';
+        }
+
+
     }
 }

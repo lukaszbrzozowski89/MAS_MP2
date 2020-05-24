@@ -27,33 +27,18 @@ public class AirplaneLicence extends ObjectPlusPlus {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public Plane getPlane() {
         return plane;
-    }
-
-    public void setPlane(Plane plane) {
-        this.plane = plane;
     }
 
     public LocalDate getValidFrom() {
         return validFrom;
     }
 
-    public void setValidFrom(LocalDate validFrom) {
-        this.validFrom = validFrom;
-    }
-
     public LocalDate getValidTo() {
         return validTo;
     }
 
-    public void setValidTo(LocalDate validTo) {
-        this.validTo = validTo;
-    }
 
     @Override
     public String toString() {
