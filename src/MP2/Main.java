@@ -5,14 +5,16 @@ package MP2;/*
 
 import java.time.LocalDate;
 
+import static MP2.Utils.*;
+
 
 public class Main {
     public static void main(String[] args) throws Exception {
 
 //        testBinaryAssociation();
 //        testAssociationWithAttribute();
-        testComposition();
-//        testAssociationWithQualifier();
+//        testComposition();
+        testAssociationWithQualifier();
     }
 
     private static void testBinaryAssociation() throws Exception {
@@ -23,11 +25,11 @@ public class Main {
         Flight flight1 = new Flight("LO333", "WAW", "CDG", LocalDate.now());
         Flight flight2 = new Flight("LO334", "CDG", "WAW", LocalDate.now());
 
-        plane1.addLink(Flight.class.getSimpleName(), Plane.class.getSimpleName(), flight1);
-        plane1.addLink(Flight.class.getSimpleName(), Plane.class.getSimpleName(), flight2);
+        plane1.addLink(flightClass, planeClass, flight1);
+        plane1.addLink(flightClass, planeClass, flight2);
 
-        plane1.showLinks(Flight.class.getSimpleName(), System.out);
-        flight1.showLinks(Plane.class.getSimpleName(), System.out);
+        plane1.showLinks(flightClass, System.out);
+        flight1.showLinks(planeClass, System.out);
         System.out.println("----------------");
     }
 
@@ -42,18 +44,18 @@ public class Main {
                 LocalDate.of(2018, 12, 1), plane2, pilot1);
 
 
-        pilot1.addLink(PilotPlane.class.getSimpleName(), Pilot.class.getSimpleName(), da);
-        da.addLink(Plane.class.getSimpleName(), PilotPlane.class.getSimpleName(), plane1);
+        pilot1.addLink(pilotPlaneClass, pilotClass, da);
+        plane1.addLink(pilotPlaneClass, planeClass, da);
 
-        pilot1.addLink(PilotPlane.class.getSimpleName(), Pilot.class.getSimpleName(), da1);
-        da1.addLink(Plane.class.getSimpleName(), PilotPlane.class.getSimpleName(), plane2);
+        pilot1.addLink(pilotPlaneClass, pilotClass, da1);
+        plane2.addLink(pilotPlaneClass, planeClass, da1);
 
 
-        da.showLinks(Pilot.class.getSimpleName(), System.out);
-        da.showLinks(Plane.class.getSimpleName(), System.out);
+        da.showLinks(pilotClass, System.out);
+        da.showLinks(planeClass, System.out);
         System.out.println();
-        da1.showLinks(Pilot.class.getSimpleName(), System.out);
-        da1.showLinks(Plane.class.getSimpleName(), System.out);
+        da1.showLinks(pilotClass, System.out);
+        da1.showLinks(planeClass, System.out);
         System.out.println("----------------");
     }
 
@@ -72,11 +74,11 @@ public class Main {
                 LocalDate.of(2018, 3, 18),
                 LocalDate.of(2025, 6, 6));
 
-        pilot.addLink(AirplaneLicence.class.getSimpleName(), Pilot.class.getSimpleName(), airplaneLicence, airplaneLicence.getId());
-        pilot.addLink(AirplaneLicence.class.getSimpleName(), Pilot.class.getSimpleName(), airplaneLicence2, airplaneLicence2.getId());
+        pilot.addLink(airplaneLicenceClass, pilotClass, airplaneLicence, airplaneLicence.getId());
+        pilot.addLink(airplaneLicenceClass, pilotClass, airplaneLicence2, airplaneLicence2.getId());
 
-        System.out.println(pilot.getLinkedObject(AirplaneLicence.class.getSimpleName(), airplaneLicence.getId()));
-        System.out.println(pilot.getLinkedObject(AirplaneLicence.class.getSimpleName(), airplaneLicence2.getId()));
+        System.out.println(pilot.getLinkedObject(airplaneLicenceClass, airplaneLicence.getId()));
+        System.out.println(pilot.getLinkedObject(airplaneLicenceClass, airplaneLicence2.getId()));
 
         System.out.println("----------------");
     }
@@ -95,16 +97,16 @@ public class Main {
         Passenger.BoardingPass boardingPass2 = passenger2
                 .createBoardingPass(generateNumberOfBoardingPass(flight, passenger2));
 
-        passenger.showLinks(Passenger.BoardingPass.class.getSimpleName(), System.out);
-        boardingPass.showLinks(Passenger.class.getSimpleName(), System.out);
+        passenger.showLinks(passengerBoardPassInternalClass, System.out);
+        boardingPass.showLinks(passengerClass, System.out);
 
         System.out.println();
-        passenger2.showLinks(Passenger.BoardingPass.class.getSimpleName(), System.out);
-        boardingPass2.showLinks(Passenger.class.getSimpleName(), System.out);
+        passenger2.showLinks(passengerBoardPassInternalClass, System.out);
+        boardingPass2.showLinks(passengerClass, System.out);
         System.out.println();
 
-//        passenger.removePart(Passenger.BoardingPass.class.getSimpleName(), Passenger.class.getSimpleName(), boardingPass);
-//        passenger2.removePart(Passenger.BoardingPass.class.getSimpleName(), Passenger.class.getSimpleName(), boardingPass2);
+//        passenger.removePart(boardingPassClass, passengerClass, boardingPass);
+//        passenger2.removePart(boardingPassClass, passengerClass, boardingPass2);
         System.out.println(ObjectPlusPlus.allParts);
         System.out.println("----------------");
 

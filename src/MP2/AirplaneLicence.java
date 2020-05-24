@@ -44,7 +44,6 @@ public class AirplaneLicence extends ObjectPlusPlus {
     public String toString() {
         return "AirplaneLicence{" +
                 "id=" + id +
-                ", plane='" + plane + '\'' +
                 ", validFrom=" + validFrom +
                 ", validTo=" + validTo +
                 '}';

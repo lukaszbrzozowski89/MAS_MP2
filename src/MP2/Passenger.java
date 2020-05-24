@@ -5,6 +5,9 @@
 
 package MP2;
 
+import static MP2.Utils.boardingPassClass;
+import static MP2.Utils.passengerClass;
+
 public class Passenger extends ObjectPlusPlus {
 
     private String name;
@@ -20,7 +23,7 @@ public class Passenger extends ObjectPlusPlus {
 
     public BoardingPass createBoardingPass(String number) throws Exception {
         BoardingPass newBoardingPass = new BoardingPass(this, number);
-        this.addPart(BoardingPass.class.getSimpleName(), Passenger.class.getSimpleName(), newBoardingPass);
+        this.addPart(boardingPassClass, passengerClass, newBoardingPass);
         return newBoardingPass;
     }
 
