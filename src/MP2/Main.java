@@ -43,19 +43,20 @@ public class Main {
         PilotPlane da1 = new PilotPlane(LocalDate.of(2018, 11, 1),
                 LocalDate.of(2018, 12, 1), plane2, pilot1);
 
-
-        pilot1.addLink(pilotPlaneClass, pilotClass, da);
-        plane1.addLink(pilotPlaneClass, planeClass, da);
-
-        pilot1.addLink(pilotPlaneClass, pilotClass, da1);
-        plane2.addLink(pilotPlaneClass, planeClass, da1);
-
-
-        da.showLinks(pilotClass, System.out);
-        da.showLinks(planeClass, System.out);
+        pilot1.showLinks(pilotPlaneClass, System.out);
         System.out.println();
-        da1.showLinks(pilotClass, System.out);
-        da1.showLinks(planeClass, System.out);
+
+        plane1.showLinks(pilotPlaneClass, System.out);
+        plane2.showLinks(pilotPlaneClass, System.out);
+        System.out.println();
+
+        da.showLinks(planeClass, System.out);
+        da.showLinks(pilotClass, System.out);
+        System.out.println();
+
+        da1.showLinks(planeClass,System.out);
+        da1.showLinks(pilotClass,System.out);
+
         System.out.println("----------------");
     }
 

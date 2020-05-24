@@ -7,20 +7,20 @@ package MP2;
 
 import java.time.LocalDate;
 
+import static MP2.Utils.*;
+
 public class PilotPlane extends ObjectPlusPlus {
 
     private static int counter = 1;
     private int id;
     private LocalDate flewFrom;
     private LocalDate flewTo;
-    private Plane plane;
-    private Pilot pilotName;
 
-    public PilotPlane(LocalDate flewFrom, LocalDate flewTo, Plane plane, Pilot pilotName) {
+    public PilotPlane(LocalDate flewFrom, LocalDate flewTo, Plane plane, Pilot pilot) {
         this.flewFrom = flewFrom;
         this.flewTo = flewTo;
-        this.plane = plane;
-        this.pilotName = pilotName;
+        this.addLink(planeClass, pilotPlaneClass, plane);
+        this.addLink(pilotClass, pilotPlaneClass, pilot);
         this.id = counter++;
     }
 
@@ -28,48 +28,16 @@ public class PilotPlane extends ObjectPlusPlus {
         return counter;
     }
 
-    public static void setCounter(int counter) {
-        PilotPlane.counter = counter;
-    }
-
     public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public LocalDate getFlewFrom() {
         return flewFrom;
     }
 
-    public void setFlewFrom(LocalDate flewFrom) {
-        this.flewFrom = flewFrom;
-    }
-
     public LocalDate getFlewTo() {
         return flewTo;
-    }
-
-    public void setFlewTo(LocalDate flewTo) {
-        this.flewTo = flewTo;
-    }
-
-    public Plane getPlane() {
-        return plane;
-    }
-
-    public void setPlane(Plane plane) {
-        this.plane = plane;
-    }
-
-    public Pilot getPilotName() {
-        return pilotName;
-    }
-
-    public void setPilotName(Pilot pilotName) {
-        this.pilotName = pilotName;
     }
 
     @Override
@@ -78,8 +46,6 @@ public class PilotPlane extends ObjectPlusPlus {
                 "id=" + id +
                 ", flewFrom=" + flewFrom +
                 ", flewTo=" + flewTo +
-                ", plane=" + plane +
-                ", pilotName=" + pilotName +
                 '}';
     }
 }
